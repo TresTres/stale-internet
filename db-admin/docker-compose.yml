@@ -1,0 +1,27 @@
+services:
+  db: 
+    image: postgres:15.3
+    environment:
+      - POSTGRES_USER=god
+      - POSTGRES_PASSWORD=secret_pass
+    ports:
+      - '5432:5432'
+    networks:
+      - backend
+
+  db-admin:
+    depends_on:
+      - service: db
+        condition: service_healthy
+    build:
+      context: db-admin
+    environment:
+      - DATABASE_URL=postgres://god:secret_pass@db:5432
+    ports:
+      - '8000:8000'
+    networks:
+      - backend
+
+
+networks:
+  backend:
