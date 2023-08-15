@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "db-admin"
+name = "db_admin"
 version = "0.1.0"
 description = ""
 authors = ["Ez Ablaza <ezra.ablaza.inbox@gmail.com>"]
