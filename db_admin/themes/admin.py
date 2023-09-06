@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from themes.models import Theme
+
+@admin.register(Theme)
+class ThemeAdmin(admin.ModelAdmin):
+    
+    list_display = ('title', 'creator', 'timestamp')

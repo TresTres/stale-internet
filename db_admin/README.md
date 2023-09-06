@@ -40,3 +40,10 @@ Run the following commands:
 poetry run django-admin migrate
 poetry run django-admin runserver
 ```
+
+## Logging in to local dev server
+Django super user
+```bash
+username: admin
+password: db_admin
+```

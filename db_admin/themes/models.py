@@ -8,4 +8,5 @@ class Theme(models.Model):
     creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=100)
     description = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
     
