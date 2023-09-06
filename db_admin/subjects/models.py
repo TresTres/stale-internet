@@ -10,6 +10,9 @@ class Subject(models.Model):
     theme = models.ForeignKey(Theme, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"subject-{self.pk}-{self.title[:15]}"
 
     def __unicode__(self):
         return self.title

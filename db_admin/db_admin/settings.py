@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from os import environ
 import dj_database_url
+from django.conf.locale.en import formats as en_formats
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -114,6 +115,8 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
+en_formats.DATETIME_FORMAT = "D, d M Y H:i:s e"
 
 
 # Static files (CSS, JavaScript, Images)
