@@ -1,4 +1,4 @@
-from factory import Faker, SubFactory, LazyAttribute
+from factory import Faker, SubFactory, LazyFunction
 from factory.django import DjangoModelFactory
 
 from subjects import models as SubjectModels
@@ -22,8 +22,8 @@ class CommentFactory(DjangoModelFactory):
         
     author = SubFactory(UserFactory)
     original_subject = SubFactory(SubjectFactory)
-    parent_comment = LazyAttribute(lambda o: CommentFactory(parent_comment=None))
-    previous_comment = LazyAttribute(lambda o: CommentFactory(previous_comment=None))
+    parent_comment = LazyFunction(lambda: CommentFactory(previous_comment=None, parent_comment=None))
+    previous_comment = LazyFunction(lambda: CommentFactory(previous_comment=None, parent_comment=None))
     text_content = Faker("paragraph")
     timestamp = Faker("date_time")
     
