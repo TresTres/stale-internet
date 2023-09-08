@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "subjects.apps.SubjectsConfig",
-    "themes.apps.ThemesConfig",
+    "subjects",
+    "themes",
+    "reactions",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
