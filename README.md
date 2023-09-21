@@ -42,8 +42,11 @@ poetry run django-admin runserver
 ```
 
 ## Logging in to local dev server
-Django super user
+Create a super user with 
 ```bash
+django-admin createsuperuser
+```
+
 username: admin
 password: db_admin
-```
+Leave email blank and bypass password validation
