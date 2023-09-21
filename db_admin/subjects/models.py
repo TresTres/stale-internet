@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from themes.models import Theme
+from db_admin.themes.models import Theme
 
 
 class Subject(models.Model):

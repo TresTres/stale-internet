@@ -1,7 +1,7 @@
 from factory import Faker, SubFactory
 from factory.django import DjangoModelFactory
 
-from reactions import models as ReactionsModels
+from db_admin.reactions import models as ReactionsModels
 from tests.factories.users import UserFactory
 
 class ReactionCategoryFactory(DjangoModelFactory):
