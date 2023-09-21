@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from subjects.models import Subject, Comment
+from db_admin.subjects.models import Subject, Comment
 
 
 class CommentInline(admin.TabularInline):

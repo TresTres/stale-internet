@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-from subjects.models import Subject, Comment
-from themes.models import Theme
+from db_admin.subjects.models import Subject, Comment
+from db_admin.themes.models import Theme
 
 class ReactionCategory(models.Model):
     name = models.CharField(max_length=200)
