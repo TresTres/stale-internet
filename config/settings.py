@@ -37,6 +37,7 @@ LOCAL_APPS = [
     "db_admin.subjects",
     "db_admin.themes",
     "db_admin.reactions",
+    "db_admin.controls",
 ]
 
 THIRD_PARTY_APPS = [
@@ -80,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "db_admin.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
