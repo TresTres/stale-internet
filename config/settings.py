@@ -37,7 +37,6 @@ LOCAL_APPS = [
     "db_admin.subjects",
     "db_admin.themes",
     "db_admin.reactions",
-    "db_admin.controls",
 ]
 
 THIRD_PARTY_APPS = [
