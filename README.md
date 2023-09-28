@@ -35,18 +35,26 @@ docker compose up -d --profile dev db
 ```
 
 ## Django commands
+### Setup
 Run the following commands:
 ```bash
 poetry run django-admin migrate
-poetry run django-admin runserver
 ```
 
-## Logging in to local dev server
+### Logging in to local dev server
 Create a super user with 
 ```bash
-django-admin createsuperuser
+poetry run django-admin createsuperuser
 ```
-
 username: admin
 password: db_admin
 Leave email blank and bypass password validation
+Then navigate to http://localhost:8000/admin and login with the super user credentials.
+```bash
+django-admin runserver
+```
+
+### Removing all records
+```bash
+poetry run django-admin flush
+```
