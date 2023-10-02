@@ -1,6 +1,10 @@
-from django.urls import path
-from db_admin.themes import views
+from django.urls import include, path
+from rest_framework import routers
+from db_admin.themes import views 
+
+router = routers.DefaultRouter()
+router.register(r'themes', views.ThemeViewSet)
 
 urlpatterns = [
-    path("", views.index, name="themes_index"),
+    path('', include(router.urls)), 
 ]

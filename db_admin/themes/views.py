@@ -1,5 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from rest_framework import viewsets, permissions
 
-def index(_request: HttpRequest):
-    return HttpResponse("Themes index.")
+from db_admin.themes.models import Theme
+from db_admin.themes.serializers import ThemeSerializer
+class ThemeViewSet(viewsets.ModelViewSet):
+    queryset = Theme.objects.all()
+    serializer_class = ThemeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    name = 'themes'
