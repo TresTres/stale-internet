@@ -1,7 +1,14 @@
 name: Check  
 run-name: Check $${{ github.ref }} 
 on:
-  [push, pull_request]:
+  pull_request:
+    branches: 
+      - main
+    types: 
+      - opened
+      - reopened
+      - edited
+      - synchronize 
 
 jobs:
   Format repo:
