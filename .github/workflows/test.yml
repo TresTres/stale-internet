@@ -1,5 +1,5 @@
 name: Test  
-run-name: Test $${{ GITHUB_HEAD_REF }} 
+run-name: Test $${{ env.GITHUB_HEAD_REF }} 
 on:
   pull_request:
     branches: 
@@ -18,7 +18,7 @@ jobs:
       - run: echo "Running pytest 🧾"
       - uses: pazelzw/pytest-action@v2.1.0    
         with:
-          report-title: "Test report for $${{ GITHUB_HEAD_REF }}"
+          report-title: "Test report for $${{ env.GITHUB_HEAD_REF }}"
           verbose: true
           emoji: true
           job-summary: true
