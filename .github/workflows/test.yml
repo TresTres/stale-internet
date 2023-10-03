@@ -15,10 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: echo "ESCAPED_BRANCH_NAME=$(echo ${{ github.head_ref }} | sed 's/\//\\\//g')" >> "$GITHUB_ENV"
       - run: echo "Running pytest 🧾"
       - uses: pavelzw/pytest-action@v2.1.0    
         with:
-          report-title: "Test report for '${{ github.head_ref }}'"
+          report-title: "Test report for ${{ env.ESCAPED_BRANCH_NAME }}"
           verbose: true
           emoji: true
           job-summary: true
