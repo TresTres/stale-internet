@@ -22,12 +22,16 @@ from django.urls import include, path
 from rest_framework import routers
 from db_admin.subjects import views as subject_views 
 from db_admin.themes import views as theme_views
+from db_admin.reactions import views as reaction_views
+
 
 router = routers.DefaultRouter()
-router.register(r'users', theme_views.UserViewSet)
-router.register(r'themes', theme_views.ThemeViewSet)
-router.register(r'subjects', subject_views.SubjectViewSet)
-router.register(r'comments', subject_views.CommentViewSet)
+router.register(rf'{theme_views.UserViewSet.name}', theme_views.UserViewSet)
+router.register(rf'{theme_views.ThemeViewSet.name}', theme_views.ThemeViewSet)
+router.register(rf'{subject_views.SubjectViewSet.name}', subject_views.SubjectViewSet)
+router.register(rf'{subject_views.CommentViewSet.name}', subject_views.CommentViewSet)
+router.register(rf'{reaction_views.ReactionCategoryViewSet.name}', reaction_views.ReactionCategoryViewSet)
+router.register(rf'{reaction_views.ReactionViewSet.name}', reaction_views.ReactionViewSet)
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
