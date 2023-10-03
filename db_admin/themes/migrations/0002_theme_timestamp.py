@@ -5,16 +5,17 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('themes', '0001_initial'),
+        ("themes", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='theme',
-            name='timestamp',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="theme",
+            name="timestamp",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
     ]

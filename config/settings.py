@@ -43,14 +43,18 @@ THIRD_PARTY_APPS = [
     "rest_framework",
 ]
 
-INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-] + LOCAL_APPS + THIRD_PARTY_APPS
+INSTALLED_APPS = (
+    [
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+    ]
+    + LOCAL_APPS
+    + THIRD_PARTY_APPS
+)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -80,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "db_admin.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
