@@ -6,34 +6,84 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('themes', '0002_theme_timestamp'),
+        ("themes", "0002_theme_timestamp"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('subjects', '0001_initial'),
+        ("subjects", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ReactionCategory',
+            name="ReactionCategory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('content', models.JSONField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("content", models.JSONField()),
             ],
         ),
         migrations.CreateModel(
-            name='Reaction',
+            name="Reaction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('flavor_text', models.CharField(max_length=200)),
-                ('category', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='reactions.reactioncategory')),
-                ('comment', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='subjects.comment')),
-                ('creator', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
-                ('subject', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='subjects.subject')),
-                ('theme', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='themes.theme')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("flavor_text", models.CharField(max_length=200)),
+                (
+                    "category",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="reactions.reactioncategory",
+                    ),
+                ),
+                (
+                    "comment",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="subjects.comment",
+                    ),
+                ),
+                (
+                    "creator",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "subject",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="subjects.subject",
+                    ),
+                ),
+                (
+                    "theme",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="themes.theme",
+                    ),
+                ),
             ],
         ),
     ]

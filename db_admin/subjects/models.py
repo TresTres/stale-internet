@@ -10,7 +10,7 @@ class Subject(models.Model):
     theme = models.ForeignKey(Theme, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return f"subject-{self.pk}-{self.title[:15]}"
 
@@ -21,11 +21,22 @@ class Subject(models.Model):
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     original_subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
-    parent_comment = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='children_comments')
-    previous_comment = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='next_comment')
+    parent_comment = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="children_comments",
+    )
+    previous_comment = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="next_comment",
+    )
     text_content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
-
 
     def __unicode__(self):
         return self.comment[:60] + "..."

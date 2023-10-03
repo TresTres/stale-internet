@@ -16,25 +16,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+
 # from db_admin.themes.urls import urlpatterns as theme_api_urlpatterns
 # from db_admin.subjects.urls import urlpatterns as subject_api_urlpatterns
 
 from rest_framework import routers
-from db_admin.subjects import views as subject_views 
+from db_admin.subjects import views as subject_views
 from db_admin.themes import views as theme_views
 from db_admin.reactions import views as reaction_views
 
 
 router = routers.DefaultRouter()
-router.register(rf'{theme_views.UserViewSet.name}', theme_views.UserViewSet)
-router.register(rf'{theme_views.ThemeViewSet.name}', theme_views.ThemeViewSet)
-router.register(rf'{subject_views.SubjectViewSet.name}', subject_views.SubjectViewSet)
-router.register(rf'{subject_views.CommentViewSet.name}', subject_views.CommentViewSet)
-router.register(rf'{reaction_views.ReactionCategoryViewSet.name}', reaction_views.ReactionCategoryViewSet)
-router.register(rf'{reaction_views.ReactionViewSet.name}', reaction_views.ReactionViewSet)
+router.register(rf"{theme_views.UserViewSet.name}", theme_views.UserViewSet)
+router.register(rf"{theme_views.ThemeViewSet.name}", theme_views.ThemeViewSet)
+router.register(rf"{subject_views.SubjectViewSet.name}", subject_views.SubjectViewSet)
+router.register(rf"{subject_views.CommentViewSet.name}", subject_views.CommentViewSet)
+router.register(
+    rf"{reaction_views.ReactionCategoryViewSet.name}",
+    reaction_views.ReactionCategoryViewSet,
+)
+router.register(
+    rf"{reaction_views.ReactionViewSet.name}", reaction_views.ReactionViewSet
+)
 
 urlpatterns = [
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
 ]
