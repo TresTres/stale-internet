@@ -1,0 +1,22 @@
+name: Check  
+run-name: Check $${{ github.ref }} 
+on:
+  pull_request:
+    branches: 
+      - main
+    types: 
+      - opened
+      - reopened
+      - edited
+      - synchronize 
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running Black for formatting 🧹"
+      - uses: rickstaa/action-black@v1.3.1
+        with:
+          black_args: --check --diff .
+      - run: echo "Checks finished 🏁"
