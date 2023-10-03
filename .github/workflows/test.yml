@@ -13,11 +13,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy: 
+      matrix:
+        python-version: [3.9, 3.11]
     steps:
       - uses: actions/checkout@v4
       - run: echo "ESCAPED_BRANCH_NAME=$(echo ${{ github.head_ref }} | sed 's/\//\\\//g')" >> "$GITHUB_ENV"
-      - run: echo "Running pytest 🧾"
-      - uses: pavelzw/pytest-action@v2.1.0    
+      - name: Set up Python ${{ matrix.python-version }} 🐍
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies 📦
+        run: pip install pytest pytest-md pytest-emoji
+      - name: Run report 📄
+        uses: pavelzw/pytest-action@v2.1.0    
         with:
           report-title: "Test report for ${{ env.ESCAPED_BRANCH_NAME }}"
           verbose: true
