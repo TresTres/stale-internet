@@ -1,5 +1,5 @@
 name: Check  
-run-name: Check $${{ github.ref }} 
+run-name: Check $${{ GITHUB_HEAD_REF }} 
 on:
   pull_request:
     branches: 

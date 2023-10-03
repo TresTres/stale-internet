@@ -1,0 +1,26 @@
+name: Test  
+run-name: Test $${{ GITHUB_HEAD_REF }} 
+on:
+  pull_request:
+    branches: 
+      - main
+    types: 
+      - opened
+      - reopened
+      - edited
+      - synchronize 
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running pytest 🧾"
+      - uses: pazelzw/pytest-action@v2.1.0    
+        with:
+          report-title: "Test report for $${{ GITHUB_HEAD_REF }}"
+          verbose: true
+          emoji: true
+          job-summary: true
+          click-to-expand: true
+      - run: echo "Tests finished 🏁"
