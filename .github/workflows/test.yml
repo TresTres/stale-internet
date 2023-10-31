@@ -19,11 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "ESCAPED_BRANCH_NAME=$(echo ${{ github.head_ref }} | sed 's/\//\\\//g')" >> "$GITHUB_ENV"
+      - name: Install poetry 🖋️
+        run: pipx install poetry
       - name: Set up Python ${{ matrix.python-version }} 🐍
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'poetry'
+          cache: poetry
       - name: Install dependencies 📦
         run: poetry install 
       - name: Run report 📄
