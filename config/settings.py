@@ -95,8 +95,8 @@ DATABASES = {
         test_options={
             "ENGINE": "django.db.backends.postgresql",
             "NAME": "core_test",
-        }
-    ),  
+        },
+    ),
 }
 
 
