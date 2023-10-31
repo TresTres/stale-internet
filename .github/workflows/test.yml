@@ -23,11 +23,13 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          cache: poetry
       - name: Install dependencies 📦
-        run: pip install pytest pytest-md pytest-emoji
+        run: poetry install 
       - name: Run report 📄
         uses: pavelzw/pytest-action@v2.1.0    
         with:
+          custom-pytest: "poetry run pytest"
           report-title: "Test report for ${{ env.ESCAPED_BRANCH_NAME }}"
           verbose: true
           emoji: true
