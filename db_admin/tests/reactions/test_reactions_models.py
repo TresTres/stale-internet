@@ -2,8 +2,8 @@ import pytest
 
 from django.core.exceptions import ValidationError
 
-from tests.factories.reactions import ReactionFactory
-from tests.factories.subjects import CommentFactory, SubjectFactory
+from db_admin.tests.factories.reactions import ReactionFactory
+from db_admin.tests.factories.subjects import CommentFactory, SubjectFactory
 
 
 @pytest.mark.django_db

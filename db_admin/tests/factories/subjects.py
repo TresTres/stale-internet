@@ -2,8 +2,9 @@ from factory import Faker, SubFactory, LazyFunction
 from factory.django import DjangoModelFactory
 
 from db_admin.subjects import models as SubjectModels
-from tests.factories.themes import ThemeFactory
-from tests.factories.users import UserFactory
+
+from db_admin.tests.factories.themes import ThemeFactory
+from db_admin.tests.factories.users import UserFactory
 
 
 class SubjectFactory(DjangoModelFactory):
