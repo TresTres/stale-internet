@@ -16,6 +16,9 @@ jobs:
     strategy: 
       matrix:
         python-version: [3.9, 3.11]
+    env: 
+      DJANGO_SETTINGS_MODULE: config.ci_settings
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/github_actions_test
     services:
       postgres:
         image: postgres:15.3
@@ -41,7 +44,7 @@ jobs:
       - name: Run report 📄
         uses: pavelzw/pytest-action@v2.1.0    
         with:
-          custom-pytest: "poetry run pytest --ds=config.ci_test_settings"
+          custom-pytest: "poetry run pytest"
           report-title: "Test report for ${{ env.ESCAPED_BRANCH_NAME }}"
           verbose: true
           emoji: true
