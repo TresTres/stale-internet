@@ -1,0 +1,53 @@
+name: Test  
+run-name: Test ${{ github.head_ref }} 
+on:
+  pull_request:
+    branches: 
+      - main
+    types: 
+      - opened
+      - reopened
+      - edited
+      - synchronize 
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy: 
+      matrix:
+        python-version: [3.9, 3.11]
+    env: 
+      DJANGO_SETTINGS_MODULE: config.ci_settings
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/github_actions_test
+    services:
+      postgres:
+        image: postgres:15.3
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "ESCAPED_BRANCH_NAME=$(echo ${{ github.head_ref }} | sed 's/\//\\\//g')" >> "$GITHUB_ENV"
+      - name: Install poetry 🖋️
+        run: pipx install poetry
+      - name: Set up Python ${{ matrix.python-version }} 🐍
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: poetry
+      - name: Install dependencies 📦
+        run: poetry install && poetry add pytest-emoji pytest-md -G dev
+      - name: Run report 📄
+        uses: pavelzw/pytest-action@v2.1.0    
+        with:
+          custom-pytest: "poetry run pytest"
+          report-title: "Test report for ${{ env.ESCAPED_BRANCH_NAME }}"
+          verbose: true
+          emoji: true
+          job-summary: true
+          click-to-expand: true
+      - run: echo "Tests finished 🏁"
