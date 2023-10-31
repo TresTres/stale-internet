@@ -40,7 +40,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: poetry
       - name: Install dependencies 📦
-        run: poetry install -E pytest-emoji -E pytest-md
+        run: poetry install && poetry add pytest-emoji pytest-md -G dev
       - name: Run report 📄
         uses: pavelzw/pytest-action@v2.1.0    
         with:
