@@ -1,5 +1,7 @@
-from django.core.exceptions import ValidationError
 import pytest
+
+from django.core.exceptions import ValidationError
+
 from tests.factories.reactions import ReactionFactory
 from tests.factories.subjects import CommentFactory, SubjectFactory
 

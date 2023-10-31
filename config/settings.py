@@ -91,10 +91,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
     "default": dj_database_url.config(
-        environ.get("DATABASE_URL"),
         engine="django.db.backends.postgresql",
-        default="postgres://god:secret_pass@localhost:5432/core",
-    )
+        test_options={
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "core_test",
+        }
+    ),  
 }
 
 

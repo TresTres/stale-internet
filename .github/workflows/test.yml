@@ -16,6 +16,16 @@ jobs:
     strategy: 
       matrix:
         python-version: [3.9, 3.11]
+    services:
+      postgres:
+        image: postgres:15.3
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v4
       - run: echo "ESCAPED_BRANCH_NAME=$(echo ${{ github.head_ref }} | sed 's/\//\\\//g')" >> "$GITHUB_ENV"
@@ -31,7 +41,7 @@ jobs:
       - name: Run report 📄
         uses: pavelzw/pytest-action@v2.1.0    
         with:
-          custom-pytest: "poetry run pytest"
+          custom-pytest: "poetry run pytest --ds=config.ci_test_settings"
           report-title: "Test report for ${{ env.ESCAPED_BRANCH_NAME }}"
           verbose: true
           emoji: true
